@@ -123,8 +123,6 @@ def get_distance_at(angle):
 def get_status_at(angle, ref1=35, ref2=10):
     dist = get_distance_at(angle)
     if dist > ref1 or dist == -2:
-        if dist == -2:
-            print('INVALID END TIME!')
         return 2
     elif dist > ref2:
         return 1
@@ -157,30 +155,28 @@ def scan_step(ref):
 ########################################################
 # Motors
 def forward(power):
-    print('forward')
-    left_front.set_power(-power)
-    left_rear.set_power(-power)
-    right_front.set_power(-power)
-    right_rear.set_power(-power)
-
-def backward(power):
-    print('backwards')
     left_front.set_power(power)
     left_rear.set_power(power)
     right_front.set_power(power)
     right_rear.set_power(power)
 
-def turn_left(power):
-    left_front.set_power(-power/0.8)
+def backward(power):
+    left_front.set_power(-power)
     left_rear.set_power(-power)
-    right_front.set_power(-power/8.4)
-    right_rear.set_power(-power/8.4)
+    right_front.set_power(-power)
+    right_rear.set_power(-power)
+
+def turn_left(power):
+    left_front.set_power(-power)
+    left_rear.set_power(-power)
+    right_front.set_power(power)
+    right_rear.set_power(power)
 
 def turn_right(power):
-    left_front.set_power(-power/8.4)
-    left_rear.set_power(-power/8.4)
-    right_front.set_power(-power/0.9)
-    right_rear.set_power(-power/1.1)
+    left_front.set_power(power)
+    left_rear.set_power(power)
+    right_front.set_power(-power)
+    right_rear.set_power(-power)
 
 def stop():
     left_front.set_power(0)

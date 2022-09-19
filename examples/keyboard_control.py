@@ -3,6 +3,8 @@ import sys
 import tty
 import termios
 import asyncio
+from picar_4wd import Ultrasonic
+from picar_4wd.pin import Pin
 
 power_val = 50
 key = 'status'
@@ -29,7 +31,13 @@ def readkey(getchar_fn=None):
     return chr(0x10 + ord(c3) - 65)
 
 def Keyborad_control():
+    us = Ultrasonic(Pin('D8'), Pin('D9'))
     while True:
+        dis_val = us.get_distance()
+        print(dis_val)
+        if dis_val < 5.0:
+            print('Obstacle detected')
+            break
         global power_val
         key=readkey()
         if key=='6':
@@ -40,14 +48,18 @@ def Keyborad_control():
             if power_val >=10:
                 power_val -= 10
                 print("power_val:",power_val)
-        if key=='w':
+        if key=='s':
             fc.forward(power_val)
-        elif key=='a':
-            fc.turn_left(power_val)
-        elif key=='s':
-            fc.backward(power_val)
+            
         elif key=='d':
+            fc.turn_left(power_val)
+            
+        elif key=='w':
+            fc.backward(power_val)
+            
+        elif key=='a':
             fc.turn_right(power_val)
+            
         else:
             fc.stop()
         if key=='q':
