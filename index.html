@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      .container{
+                  display: flex;
+                }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./index.js"></script>
+    
+  </head>
+
+  <body>
+    <div class="container">
+      
+      <div class = "head" style="justify-content: space-between;">
+        <h3>Welcome to car controls!</h3><br>
+        <div class="greet">
+          My name is: <input id = "myName" type="text" placeholder="name"/>
+          <button class="btn btn-success" onclick="greetings()">Submit</button>
+        </div>
+        <div class = "stop_btn">
+          <button class="btn btn-success" onclick="client_mgr(6)">Stop</button>
+        </div>
+        <br>
+        <span id = "greet"></span>
+      </div>
+     
+    </div>
+
+  <div class="row">
+    <div class="container">
+      <div class="jumbotron text-center col-md-6">
+          <span>&nbsp;&nbsp;</span> 
+          <button class="btn btn-success" onclick="drive(0)" style='font-size:45px; color:grey;'>&#8679;</button>          
+          <br>
+          <button class="btn btn-success" onclick="drive(3)" style='font-size:45px; color:grey;'>&#8678;</button>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+          <button class="btn btn-success" onclick="drive(1)" style='font-size:45px; color:grey;'>&#8680;</button>
+          <br>
+          <span>&nbsp;&nbsp;</span> 
+          <button class="btn btn-success" onclick="drive(2)" style='font-size:45px; color:grey;'>&#8681;</button>
+          <br>
+          
+      </div>
+      <div class="jumbotron text-left col-md-6">
+        <p>
+          Obstacle Distance: <span id="obs_dist_diag">0.0</span><br>
+         Current Speed: <span id="speed_diag">0.0</span><br>
+         Current Power: <span id="power_diag">0.0</span><br>
+         Temperature of the Pi: <span id="temp_diag">0.0</span><br>
+         Bluetooth return value: <span id="valid_inpt">False</span>
+        </p>  
+      </div>
+  </div>
+</div>
+
+  </body>
+</html>
+
